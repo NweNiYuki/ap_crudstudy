@@ -25,9 +25,9 @@ class HomeController extends Controller
     public function jsPage()
     {
     	$data = array(
-			"lesson1" => "This is PHP Lesson1",
-			"lesson2" => "This is PHP Lesson2",
-			"lesson3" => "This is PHP Lesson3",
+			"lesson1" => "This is JS Lesson1",
+			"lesson2" => "This is JS Lesson2",
+			"lesson3" => "This is JS Lesson3",
 		);
 	return view('js',compact('data'));
     }

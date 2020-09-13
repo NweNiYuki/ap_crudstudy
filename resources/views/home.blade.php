@@ -1,10 +1,12 @@
 @extends("layout")
 
-@section('title')
-    Home Page
-@endsection
+<h2>Home Page</h2>
+
 @section("content")
-
-    <h2>{{$name}}</h2>
-
+@foreach($data as $value)
+<li>Name-{{$value->name }}</li>
+<li>Ingredients-{{$value->ingredients }}</li>
+<li>Category-{{$value->category }}</li>
+<hr>
+@endforeach
 @endsection

@@ -34,14 +34,31 @@ class ReceipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $receipe = new Receipe();
-        $receipe->name =$request->name;
-        $receipe->ingredients =$request->ingredients;
-        $receipe->category =$request->category;
+        // dd(request()->all()); if request function is well, so use
+        $validatedData = request()->validate([
+        'name' => 'required',
+        'ingredients' => 'required',
+        'category' => 'required',
+    ]);
 
-        $receipe->save();
+        // $receipe = new Receipe();
+        // $receipe->name =request()->name;
+        // $receipe->ingredients =request()->ingredients;
+        // $receipe->category =request()->category;
+
+        // $receipe->save();
+
+        // Receipe::create(request()->all());
+        Receipe::create($validatedData);
+        // Receipe::create([
+        //     'name' => request()->name,
+        //     'ingredients' => request()->ingredients,
+        //     'category' => request()->category,
+        // ]);
+
+
 
         return redirect('receipe');
     }
@@ -54,6 +71,7 @@ class ReceipeController extends Controller
      */
     public function show(Receipe $receipe)
     {
+        // dd($receipe);
        return view('show', compact('receipe'));
     }
 
@@ -76,15 +94,22 @@ class ReceipeController extends Controller
      * @param  \App\Receipe  $receipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Receipe $receipe)
+    public function update(Receipe $receipe)
     {
-        $receipe = Receipe::find($receipe->id);
-        $receipe->name =$request->name;
-        $receipe->ingredients =$request->ingredients;
-        $receipe->category =$request->category;
+         $validatedData = request()->validate([
+        'name' => 'required',
+        'ingredients' => 'required',
+        'category' => 'required',
+    ]);
 
-        $receipe->save();
+        // $receipe = Receipe::find($receipe->id);
+        // $receipe->name =request()->name;
+        // $receipe->ingredients =request()->ingredients;
+        // $receipe->category =request()->category;
 
+        // $receipe->save();
+         // $receipe->update(request()->all());
+         $receipe->update($validatedData);
         return redirect('receipe');
     }
 

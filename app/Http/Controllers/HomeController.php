@@ -6,29 +6,23 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
-    	$name = "Home Page Template";
-    	return view('home',compact("name"));
-    }
-
-    public function phpPage()
-    {
-    	$data = array(
-			"lesson1" => "This is PHP Lesson1",
-			"lesson2" => "This is PHP Lesson2",
-			"lesson3" => "This is PHP Lesson3",
-		);
-	return view('php',compact('data'));
-    }
-
-    public function jsPage()
-    {
-    	$data = array(
-			"lesson1" => "This is JS Lesson1",
-			"lesson2" => "This is JS Lesson2",
-			"lesson3" => "This is JS Lesson3",
-		);
-	return view('js',compact('data'));
+        return view('home');
     }
 }

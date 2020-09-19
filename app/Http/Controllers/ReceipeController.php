@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Receipe;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class ReceipeController extends Controller
     public function index()
     {
         $data = Receipe::all();
+
         return view('home', compact('data'));
     }
 
@@ -25,7 +27,8 @@ class ReceipeController extends Controller
      */
     public function create()
     {
-        return view('create');
+        $category = Category::all();
+        return view('create', compact('category'));
     }
 
     /**
@@ -36,6 +39,7 @@ class ReceipeController extends Controller
      */
     public function store()
     {
+        // dd(request()->all());
         // dd(request()->all()); if request function is well, so use
         $validatedData = request()->validate([
         'name' => 'required',
@@ -71,7 +75,7 @@ class ReceipeController extends Controller
      */
     public function show(Receipe $receipe)
     {
-        // dd($receipe);
+        // dd($receipe->categories);
        return view('show', compact('receipe'));
     }
 
@@ -81,10 +85,10 @@ class ReceipeController extends Controller
      * @param  \App\Receipe  $receipe
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Receipe $receipe)
     {
-        $receipe = Receipe::find($id);
-        return view('edit', compact('receipe'));
+        $category = Category::all();
+        return view('edit', compact('receipe', 'category'));
     }
 
     /**

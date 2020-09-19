@@ -26,9 +26,16 @@
 	<textarea name="ingredients" class="form-control">{{old('ingredients')}}</textarea>
 	</div>
 
-	<div class="form-group">
+	<!-- <div class="form-group">
 	<label for="category">Category</label>
 	<input type="text" name="category" class="form-control" value="{{old('category')}}">
+	</div> -->
+	<div class="form-group">
+		<select name="category" class="form-control">
+			@foreach($category as $value)
+			<option value="{{ $value->id }}">{{ $value->name }} </option>
+			@endforeach
+		</select>
 	</div>
 	
 	<button type="submit" class="btn btn-primary">Add</button>

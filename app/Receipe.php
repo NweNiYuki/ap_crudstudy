@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Category;
 use Illuminate\Database\Eloquent\Model;
 
 class Receipe extends Model
@@ -12,6 +13,11 @@ class Receipe extends Model
     // ];
 
    protected $guarded = [];
+
+   public function categories()
+    {
+    	return $this->belongsto(Category::class,'category');
+    }
 
 
 }

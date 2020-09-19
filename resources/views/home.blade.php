@@ -1,18 +1,35 @@
-@extends("layout")
+@extends('layouts.app')
 
-@section("content")
-
+@section('content')
 <div class="container">
-	<h2>Home Page</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
 
-<a href="/receipe/create"><button class="btn btn-success">Create Receipe</button></a>
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
-@foreach($data as $value)
-<a href="/receipe/{{ $value->id }}"><li>Name-{{$value->name }}</li></a>
-<li>Ingredients-{{$value->ingredients }}</li>
-<li>Category-{{$value->category }}</li>
-<hr>
+	           <div class="container">
+					<h2>Home Page</h2>
 
-@endforeach
+				<a href="/receipe/create"><button class="btn btn-success">Create Receipe</button></a>
+
+				@foreach($data as $value)
+				<a href="/receipe/{{ $value->id }}"><li>Name-{{$value->name }}</li></a>
+				<hr>
+
+				@endforeach
+				</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
+

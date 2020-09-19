@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('receipe', 'ReceipeController');
+Route::get('home', 'ReceipeController@index');
+Auth::routes();
+
 // Route::get('receipe', 'ReceipeController@index');
 // Route::get('receipe/create', 'ReceipeController@createReceipeForm');
 // Route::get('receipe/{id}', 'ReceipeController@show');
@@ -50,3 +53,4 @@ Route::resource('receipe', 'ReceipeController');
 // 		)
 // 	]);
 // });
+

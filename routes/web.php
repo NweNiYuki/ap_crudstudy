@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('receipe', 'ReceipeController');
-Route::get('home', 'ReceipeController@index');
+Route::get('home', 'HomeController@index');
 Auth::routes();
 
 // Route::get('receipe', 'ReceipeController@index');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Receipe;
+use App\test;
 use Illuminate\Http\Request;
 
 class ReceipeController extends Controller
@@ -19,6 +20,9 @@ class ReceipeController extends Controller
      */
     public function index()
     {   
+        // dd(app('test'));
+        // session(['key1' => "value1"]); //session htoke htar
+        // dd(session('key1'));
         // author_id == auth()->id()
         $data = Receipe::where('author_id', auth()->id())->get();
 
@@ -69,7 +73,7 @@ class ReceipeController extends Controller
         //     'category' => request()->category,
         // ]);
 
-
+        session()->flash("message", 'Receipe has created successfully');
 
         return redirect('receipe');
     }
@@ -80,8 +84,9 @@ class ReceipeController extends Controller
      * @param  \App\Receipe  $receipe
      * @return \Illuminate\Http\Response
      */
-    public function show(Receipe $receipe)
+    public function show(Receipe $receipe, test $test)
     {
+          // dd($test);
         // dd($receipe->categories);
         // if($receipe->author_id != auth()->id()){
         //     abort(403);
@@ -127,7 +132,7 @@ class ReceipeController extends Controller
         // $receipe->save();
          // $receipe->update(request()->all());
          $receipe->update($validatedData);
-        return redirect('receipe');
+        return redirect('receipe')->with('message', 'Receipe has updated successfully');
     }
 
     /**
@@ -140,7 +145,7 @@ class ReceipeController extends Controller
     {
          $this->authorize('view', $receipe);
         $receipe->delete();
-        return redirect('receipe');
+        return redirect('receipe')->with('message', 'Receipe has deleted successfully');
     }
 }
 

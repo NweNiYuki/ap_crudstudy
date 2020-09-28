@@ -3,7 +3,9 @@
 namespace App;
 
 use App\Category;
+use App\Mail\ReceipeStored;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Mail;
 
 class Receipe extends Model
 {
@@ -11,6 +13,20 @@ class Receipe extends Model
     //  protected $fillable = [
     //     'name', 'ingredients', 'category'
     // ];
+
+   protected static function boot()
+   {
+   		parent::boot();
+
+   		static::created(function($receipe){
+
+   		Mail::to('nweni5240@gmail.com')->send(new ReceipeStored($receipe));
+
+        session()->flash("message", 'Receipe has created successfully');
+   		
+   		});
+
+   }
 
    protected $guarded = [];
 

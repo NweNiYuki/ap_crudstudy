@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'testkey' => [
+        'key' => env('testkey', "some important key from service config"),
+    ],
+
 ];

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Mail\ReceipeStored;
 use App\Receipe;
 use App\test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReceipeController extends Controller
 {
@@ -66,14 +68,13 @@ class ReceipeController extends Controller
         // $receipe->save();
 
         // Receipe::create(request()->all());
-        Receipe::create($validatedData + ['author_id' => auth()->id()] );
+        $receipe = Receipe::create($validatedData + ['author_id' => auth()->id()] );
         // Receipe::create([
         //     'name' => request()->name,
         //     'ingredients' => request()->ingredients,
         //     'category' => request()->category,
         // ]);
-
-        session()->flash("message", 'Receipe has created successfully');
+         
 
         return redirect('receipe');
     }

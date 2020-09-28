@@ -14,7 +14,7 @@ class SampleProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('test', function(){
-    return new \App\test("something is happening right now");
+    return new \App\test(config('mymailservice.testkey.key'));
 });
     }
 

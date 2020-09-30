@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Events\ReceipeCreatedEvent;
 use App\Mail\ReceipeStored;
+use App\Notifications\ReceipeCreatedNotification;
 use App\Receipe;
+use App\User;
 use App\test;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -26,6 +29,11 @@ class ReceipeController extends Controller
         // session(['key1' => "value1"]); //session htoke htar
         // dd(session('key1'));
         // author_id == auth()->id()
+        // $user = User::find(3);
+        // $user->notify(new ReceipeCreatedNotification());
+        // echo "send notification";
+        // exit();
+
         $data = Receipe::where('author_id', auth()->id())->get();
 
         // dd(auth()->user()); 
@@ -74,7 +82,7 @@ class ReceipeController extends Controller
         //     'ingredients' => request()->ingredients,
         //     'category' => request()->category,
         // ]);
-         
+           // event(new ReceipeCreatedEvent($receipe));
 
         return redirect('receipe');
     }
